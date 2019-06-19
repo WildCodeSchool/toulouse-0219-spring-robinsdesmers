@@ -13,7 +13,7 @@ public class User {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Rubbish> rubbishes;
+    private List<RubbishItem> rubbishItems;
 
     public User(String name) {
         this.name = name;
@@ -38,11 +38,11 @@ public class User {
         this.name = name;
     }
 
-    public List<Rubbish> getRubbishes() {
-        return rubbishes;
+    public List<RubbishItem> getRubbishItems() {
+        return rubbishItems;
     }
 
-    public void setRubbishes(List<Rubbish> rubbishes) {
-        this.rubbishes = rubbishes;
+    public void setRubbishItems(List<RubbishItem> rubbishItems) {
+        this.rubbishItems = rubbishItems;
     }
 }

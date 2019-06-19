@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-public class Rubbish {
+public class RubbishItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public class Rubbish {
     @JsonIgnore
     private User user;
 
-    public Rubbish(String name) {
+    public RubbishItem(String name) {
         this.name = name;
     }
 
-    public Rubbish() {
+    public RubbishItem() {
     }
 
     public Long getId() {

@@ -1,6 +1,6 @@
 package fr.wildcodeschool.robinsdesmers.controller;
 
-import fr.wildcodeschool.robinsdesmers.model.Rubbish;
+import fr.wildcodeschool.robinsdesmers.model.RubbishItem;
 import fr.wildcodeschool.robinsdesmers.model.User;
 import fr.wildcodeschool.robinsdesmers.repository.RubbishRepository;
 import fr.wildcodeschool.robinsdesmers.repository.UserRepository;
@@ -19,28 +19,28 @@ public class RubbishController {
     private RubbishRepository rubbishRepository;
 
     @GetMapping("/rubbishes")
-    public List<Rubbish> readAllRubbishes() {
+    public List<RubbishItem> readAllRubbishes() {
         return rubbishRepository.findAll();
     }
 
     @GetMapping("/rubbishes/{rubbishId}")
-    public Rubbish readOneRubbish(@PathVariable Long rubbishId) {
+    public RubbishItem readOneRubbish(@PathVariable Long rubbishId) {
         return rubbishRepository.findById(rubbishId).get();
     }
 
     @PostMapping("/users/{userId}/rubbishes")
-    public Rubbish createRubbish(@PathVariable Long userId,
-                       @RequestBody Rubbish rubbish) {
+    public RubbishItem createRubbish(@PathVariable Long userId,
+                                     @RequestBody RubbishItem rubbishItem) {
         User user = userRepository.findById(userId).get();
-        rubbish.setUser(user);
-        return rubbishRepository.save(rubbish);
+        rubbishItem.setUser(user);
+        return rubbishRepository.save(rubbishItem);
     }
 
     @PutMapping("/rubbishes/{rubbishId}")
-    public Rubbish updateRubbish(@PathVariable Long rubbishId, @RequestBody Rubbish rubbish) {
-        Rubbish rubbishToUpdate = rubbishRepository.findById(rubbishId).get();
-            rubbishToUpdate.setName(rubbish.getName());
-        return rubbishRepository.save(rubbishToUpdate);
+    public RubbishItem updateRubbish(@PathVariable Long rubbishId, @RequestBody RubbishItem rubbishItem) {
+        RubbishItem rubbishItemToUpdate = rubbishRepository.findById(rubbishId).get();
+            rubbishItemToUpdate.setName(rubbishItem.getName());
+        return rubbishRepository.save(rubbishItemToUpdate);
     }
 
     @DeleteMapping("/rubbishes/{rubbishId}")
