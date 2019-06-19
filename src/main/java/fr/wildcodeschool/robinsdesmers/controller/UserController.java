@@ -1,0 +1,43 @@
+package fr.wildcodeschool.robinsdesmers.controller;
+
+import fr.wildcodeschool.robinsdesmers.model.User;
+import fr.wildcodeschool.robinsdesmers.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/users")
+    public List<User> readAllUser() {
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/users/{userId}")
+    public User readOneUser(@PathVariable Long userId) {
+        return userRepository.findById(userId).get();
+    }
+
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user) {
+        return userRepository.save(user);
+    }
+
+    @PutMapping("/users/{userId}")
+    public User updateUser(@PathVariable Long userId, @RequestBody User user) {
+        User userToUpdate = userRepository.findById(userId).get();
+            userToUpdate.setName(user.getName());
+        return userRepository.save(userToUpdate);
+    }
+
+    @DeleteMapping("/users/{userId}")
+    public void deleteUser(@PathVariable Long userId) {
+        userRepository.deleteById(userId);
+    }
+}
+
