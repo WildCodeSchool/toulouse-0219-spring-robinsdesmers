@@ -15,6 +15,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<RubbishItem> rubbishItems;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<CollectPointItem> collectPointItems;
+
     public User(String name) {
         this.name = name;
     }
@@ -44,5 +47,13 @@ public class User {
 
     public void setRubbishItems(List<RubbishItem> rubbishItems) {
         this.rubbishItems = rubbishItems;
+    }
+
+    public List<CollectPointItem> getCollectPointItems() {
+        return collectPointItems;
+    }
+
+    public void setCollectPointItems(List<CollectPointItem> collectPointItems) {
+        this.collectPointItems = collectPointItems;
     }
 }

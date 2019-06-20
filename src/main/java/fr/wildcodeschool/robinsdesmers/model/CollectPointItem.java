@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-public class RubbishItem {
+public class CollectPointItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +13,7 @@ public class RubbishItem {
 
     private String title;
     private String description;
-    private Integer sommeDechet;
-    private boolean isAtSea;
-    private boolean isCollected;
+    private Integer sommePoubelle;
     private Long latitude;
     private Long longitude;
 
@@ -24,17 +22,15 @@ public class RubbishItem {
     @JsonIgnore
     private User user;
 
-    public RubbishItem(String title, String description, Integer sommeDechet, boolean isAtSea, boolean isCollected, Long latitude, Long longitude) {
+    public CollectPointItem(String title, String description, Integer sommePoubelle, Long latitude, Long longitude) {
         this.title = title;
         this.description = description;
-        this.sommeDechet = sommeDechet;
-        this.isAtSea = isAtSea;
-        this.isCollected = isCollected;
+        this.sommePoubelle = sommePoubelle;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public RubbishItem() {
+    public CollectPointItem() {
     }
 
     public Long getId() {
@@ -61,28 +57,12 @@ public class RubbishItem {
         this.description = description;
     }
 
-    public Integer getSommeDechet() {
-        return sommeDechet;
+    public Integer getSommePoubelle() {
+        return sommePoubelle;
     }
 
-    public void setSommeDechet(Integer sommeDechet) {
-        this.sommeDechet = sommeDechet;
-    }
-
-    public boolean isAtSea() {
-        return isAtSea;
-    }
-
-    public void setAtSea(boolean atSea) {
-        isAtSea = atSea;
-    }
-
-    public boolean isCollected() {
-        return isCollected;
-    }
-
-    public void setCollected(boolean collected) {
-        isCollected = collected;
+    public void setSommePoubelle(Integer sommePoubelle) {
+        this.sommePoubelle = sommePoubelle;
     }
 
     public Long getLatitude() {
