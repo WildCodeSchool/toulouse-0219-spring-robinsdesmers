@@ -39,7 +39,13 @@ public class RubbishController {
     @PutMapping("/rubbishes/{rubbishId}")
     public RubbishItem updateRubbish(@PathVariable Long rubbishId, @RequestBody RubbishItem rubbishItem) {
         RubbishItem rubbishItemToUpdate = rubbishRepository.findById(rubbishId).get();
-            rubbishItemToUpdate.setName(rubbishItem.getName());
+            rubbishItemToUpdate.setTitle(rubbishItem.getTitle());
+            rubbishItemToUpdate.setDescription(rubbishItem.getDescription());
+            rubbishItemToUpdate.setSommeDechet(rubbishItem.getSommeDechet());
+            rubbishItemToUpdate.setCollected(rubbishItem.isCollected());
+            rubbishItemToUpdate.setAtSea(rubbishItem.isAtSea());
+            rubbishItemToUpdate.setLatitude(rubbishItem.getLatitude());
+            rubbishItemToUpdate.setLongitude(rubbishItem.getLongitude());
         return rubbishRepository.save(rubbishItemToUpdate);
     }
 
