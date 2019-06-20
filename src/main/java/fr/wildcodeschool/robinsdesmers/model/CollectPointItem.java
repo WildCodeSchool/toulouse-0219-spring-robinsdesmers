@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-public class CollectPointItem {
+public class CollectPointItem extends DateItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
