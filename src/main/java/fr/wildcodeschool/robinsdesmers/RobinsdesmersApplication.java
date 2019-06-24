@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
 @SpringBootApplication
-public class RobinsdesmersApplication implements CommandLineRunner {
+public class RobinsdesmersApplication {
 
 	@Autowired
 	UserRepository userRepository;
@@ -26,7 +26,4 @@ public class RobinsdesmersApplication implements CommandLineRunner {
 		SpringApplication.run(RobinsdesmersApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-	}
 }
