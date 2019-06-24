@@ -41,7 +41,7 @@ public class RubbishController {
         RubbishItem rubbishItemToUpdate = rubbishRepository.findById(rubbishId).get();
             rubbishItemToUpdate.setTitle(rubbishItem.getTitle());
             rubbishItemToUpdate.setDescription(rubbishItem.getDescription());
-            rubbishItemToUpdate.setSommeDechet(rubbishItem.getSommeDechet());
+            rubbishItemToUpdate.setSumRubbish(rubbishItem.getSumRubbish());
             rubbishItemToUpdate.setCollected(rubbishItem.isCollected());
             rubbishItemToUpdate.setAtSea(rubbishItem.isAtSea());
             rubbishItemToUpdate.setLatitude(rubbishItem.getLatitude());

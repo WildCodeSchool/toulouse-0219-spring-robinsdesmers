@@ -13,21 +13,21 @@ public class RubbishItem extends DateItem {
 
     private String title;
     private String description;
-    private Integer sommeDechet;
+    private Integer sumRubbish;
     private boolean isAtSea;
     private boolean isCollected;
-    private Long latitude;
-    private Long longitude;
+    private Double latitude;
+    private Double longitude;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     @JsonIgnore
     private User user;
 
-    public RubbishItem(String title, String description, Integer sommeDechet, boolean isAtSea, boolean isCollected, Long latitude, Long longitude) {
+    public RubbishItem(String title, String description, Integer sumRubbish, boolean isAtSea, boolean isCollected, Double latitude, Double longitude) {
         this.title = title;
         this.description = description;
-        this.sommeDechet = sommeDechet;
+        this.sumRubbish = sumRubbish;
         this.isAtSea = isAtSea;
         this.isCollected = isCollected;
         this.latitude = latitude;
@@ -61,12 +61,12 @@ public class RubbishItem extends DateItem {
         this.description = description;
     }
 
-    public Integer getSommeDechet() {
-        return sommeDechet;
+    public Integer getSumRubbish() {
+        return sumRubbish;
     }
 
-    public void setSommeDechet(Integer sommeDechet) {
-        this.sommeDechet = sommeDechet;
+    public void setSumRubbish(Integer sumRubbish) {
+        this.sumRubbish = sumRubbish;
     }
 
     public boolean isAtSea() {
@@ -85,19 +85,19 @@ public class RubbishItem extends DateItem {
         isCollected = collected;
     }
 
-    public Long getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
