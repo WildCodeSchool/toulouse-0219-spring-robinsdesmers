@@ -31,7 +31,18 @@ public class UserController {
     @PutMapping("/users/{userId}")
     public User updateUser(@PathVariable Long userId, @RequestBody User user) {
         User userToUpdate = userRepository.findById(userId).get();
-            userToUpdate.setName(user.getName());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setGender(user.getGender());
+        userToUpdate.setDateOfBirth(user.getDateOfBirth());
+        userToUpdate.setDepartment(user.getDepartment());
+        userToUpdate.setCategory(user.getCategory());
+        userToUpdate.setPseudo(user.getPseudo());
+        userToUpdate.setDescription(user.getDescription());
+        userToUpdate.setAvatar(user.getAvatar());
+        userToUpdate.setScore(user.getScore());
         return userRepository.save(userToUpdate);
     }
 
