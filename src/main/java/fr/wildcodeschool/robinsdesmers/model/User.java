@@ -1,7 +1,6 @@
 package fr.wildcodeschool.robinsdesmers.model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
