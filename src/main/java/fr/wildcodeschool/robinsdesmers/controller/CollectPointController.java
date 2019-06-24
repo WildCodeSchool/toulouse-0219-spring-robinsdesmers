@@ -40,7 +40,7 @@ public class CollectPointController {
         CollectPointItem collectPointItemToUpdate = collectPointRepository.findById(collectPointId).get();
         collectPointItemToUpdate.setTitle(collectPointItem.getTitle());
         collectPointItemToUpdate.setDescription(collectPointItem.getDescription());
-        collectPointItemToUpdate.setSommePoubelle(collectPointItem.getSommePoubelle());
+        collectPointItemToUpdate.setSumCollectPoint(collectPointItem.getSumCollectPoint());
         collectPointItemToUpdate.setLatitude(collectPointItem.getLatitude());
         collectPointItemToUpdate.setLongitude(collectPointItem.getLongitude());
         return collectPointRepository.save(collectPointItemToUpdate);

@@ -13,19 +13,19 @@ public class CollectPointItem extends DateItem {
 
     private String title;
     private String description;
-    private Integer sommePoubelle;
-    private Long latitude;
-    private Long longitude;
+    private Integer sumCollectPoint;
+    private Double latitude;
+    private Double longitude;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     @JsonIgnore
     private User user;
 
-    public CollectPointItem(String title, String description, Integer sommePoubelle, Long latitude, Long longitude) {
+    public CollectPointItem(String title, String description, Integer sumCollectPoint, Double latitude, Double longitude) {
         this.title = title;
         this.description = description;
-        this.sommePoubelle = sommePoubelle;
+        this.sumCollectPoint = sumCollectPoint;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -57,27 +57,27 @@ public class CollectPointItem extends DateItem {
         this.description = description;
     }
 
-    public Integer getSommePoubelle() {
-        return sommePoubelle;
+    public Integer getSumCollectPoint() {
+        return sumCollectPoint;
     }
 
-    public void setSommePoubelle(Integer sommePoubelle) {
-        this.sommePoubelle = sommePoubelle;
+    public void setSumCollectPoint(Integer sumCollectPoint) {
+        this.sumCollectPoint = sumCollectPoint;
     }
 
-    public Long getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
