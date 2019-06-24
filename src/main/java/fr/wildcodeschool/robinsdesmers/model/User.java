@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+public class User extends DateItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
