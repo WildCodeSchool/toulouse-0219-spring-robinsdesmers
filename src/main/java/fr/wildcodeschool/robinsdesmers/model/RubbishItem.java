@@ -14,8 +14,8 @@ public class RubbishItem extends DateItem {
     private String title;
     private String description;
     private Integer sumRubbish;
-    private boolean isAtSea;
-    private boolean isCollected;
+    private boolean atSea;
+    private boolean collected;
     private Double latitude;
     private Double longitude;
 
@@ -24,17 +24,17 @@ public class RubbishItem extends DateItem {
     @JsonIgnore
     private User user;
 
-    public RubbishItem(String title, String description, Integer sumRubbish, boolean isAtSea, boolean isCollected, Double latitude, Double longitude) {
+    public RubbishItem() {
+    }
+
+    public RubbishItem(String title, String description, Integer sumRubbish, boolean atSea, boolean collected, Double latitude, Double longitude) {
         this.title = title;
         this.description = description;
         this.sumRubbish = sumRubbish;
-        this.isAtSea = isAtSea;
-        this.isCollected = isCollected;
+        this.atSea = atSea;
+        this.collected = collected;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    public RubbishItem() {
     }
 
     public Long getId() {
@@ -70,19 +70,19 @@ public class RubbishItem extends DateItem {
     }
 
     public boolean isAtSea() {
-        return isAtSea;
+        return atSea;
     }
 
     public void setAtSea(boolean atSea) {
-        isAtSea = atSea;
+        this.atSea = atSea;
     }
 
     public boolean isCollected() {
-        return isCollected;
+        return collected;
     }
 
     public void setCollected(boolean collected) {
-        isCollected = collected;
+        this.collected = collected;
     }
 
     public Double getLatitude() {
