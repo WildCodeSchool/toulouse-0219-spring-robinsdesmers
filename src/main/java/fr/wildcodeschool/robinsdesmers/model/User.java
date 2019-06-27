@@ -20,8 +20,11 @@ public class User extends DateItem {
     private String category;
     private String pseudo;
     private String description;
-    private int avatar;
-    private int score;
+    private Integer avatar;
+    private Integer score;
+    private Double latitude;
+    private Double longitude;
+    private boolean connected;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -33,7 +36,9 @@ public class User extends DateItem {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, String gender, String dateOfBirth, String department, String category, String pseudo, String description, int avatar, int score) {
+    public User(String firstName, String lastName, String email, String password, String gender, String dateOfBirth, String department,
+                String category, String pseudo, String description, Integer avatar, Integer score, Double latitude, Double longitude,
+                boolean connected) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -46,6 +51,9 @@ public class User extends DateItem {
         this.description = description;
         this.avatar = avatar;
         this.score = score;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.connected = connected;
     }
 
     public Long getId() {
@@ -136,20 +144,44 @@ public class User extends DateItem {
         this.description = description;
     }
 
-    public int getAvatar() {
+    public Integer getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(int avatar) {
+    public void setAvatar(Integer avatar) {
         this.avatar = avatar;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
     }
 
     public List<RubbishItem> getRubbishItems() {
