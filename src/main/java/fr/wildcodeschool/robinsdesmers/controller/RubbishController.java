@@ -48,6 +48,12 @@ public class RubbishController {
             rubbishItemToUpdate.setLongitude(rubbishItem.getLongitude());
         return rubbishRepository.save(rubbishItemToUpdate);
     }
+     @PutMapping("/rubbishes/{rubbishId}/collected")
+     public RubbishItem updateCollectedRubbish(@PathVariable Long rubbishId){
+        RubbishItem rubbishItem1 = rubbishRepository.findById(rubbishId).get();
+        rubbishItem1.setCollected(true);
+        return  rubbishRepository.save(rubbishItem1);
+     }
 
     @DeleteMapping("/rubbishes/{rubbishId}")
     public void deleteRubbish(@PathVariable Long rubbishId) {
