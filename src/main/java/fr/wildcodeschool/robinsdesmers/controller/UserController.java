@@ -1,6 +1,5 @@
 package fr.wildcodeschool.robinsdesmers.controller;
 
-import fr.wildcodeschool.robinsdesmers.model.RubbishItem;
 import fr.wildcodeschool.robinsdesmers.model.User;
 import fr.wildcodeschool.robinsdesmers.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,18 @@ public class UserController {
         return userRepository.save(user);
     }
 
+    @DeleteMapping("/users/{userId}")
+    public void deleteUser(@PathVariable Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @PutMapping("/users/{userId}/score")
+    public User updateUserScore(@PathVariable Long userId) {
+        User userToUpdate = userRepository.findById(userId).get();
+        userToUpdate.setScore(userToUpdate.getScore() + 10);
+        return userRepository.save(userToUpdate);
+    }
+
     @PutMapping("/users/{userId}")
     public User updateUser(@PathVariable Long userId, @RequestBody User user) {
         User userToUpdate = userRepository.findById(userId).get();
@@ -44,19 +55,10 @@ public class UserController {
         userToUpdate.setDescription(user.getDescription());
         userToUpdate.setAvatar(user.getAvatar());
         userToUpdate.setScore(user.getScore());
+        userToUpdate.setLatitude(user.getLatitude());
+        userToUpdate.setLongitude(user.getLongitude());
+        userToUpdate.setConnected(user.isConnected());
         return userRepository.save(userToUpdate);
-    }
-
-    @DeleteMapping("/users/{userId}")
-    public void deleteUser(@PathVariable Long userId) {
-        userRepository.deleteById(userId);
-    }
-
-    @PutMapping("/users/{userId}/score")
-    public User updateUserScore(@PathVariable Long userId){
-        User userToUpdate = userRepository.findById(userId).get();
-        userToUpdate.setScore(userToUpdate.getScore() + 10);
-        return  userRepository.save(userToUpdate);
     }
 }
 
