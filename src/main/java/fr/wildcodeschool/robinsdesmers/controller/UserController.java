@@ -1,5 +1,6 @@
 package fr.wildcodeschool.robinsdesmers.controller;
 
+import fr.wildcodeschool.robinsdesmers.model.Authentication;
 import fr.wildcodeschool.robinsdesmers.model.User;
 import fr.wildcodeschool.robinsdesmers.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,21 @@ public class UserController {
         userToUpdate.setLongitude(user.getLongitude());
         userToUpdate.setConnected(user.isConnected());
         return userRepository.save(userToUpdate);
+    }
+
+    @GetMapping("/users/{email}/{password}")
+    public Authentication signIn(@PathVariable String email, @PathVariable String password) {
+        User user = userRepository.findUserByEmailIgnoreCase(email);
+        Authentication authentication = new Authentication();
+        if (user == null) {
+            authentication.setError("ERROR_EMAIL");
+            return authentication;
+        } else if (!user.getPassword().equals(password)) {
+            authentication.setError("ERROR_PASSWORD");
+            return authentication;
+        }
+        authentication.setUser(user);
+        return authentication;
     }
 }
 
