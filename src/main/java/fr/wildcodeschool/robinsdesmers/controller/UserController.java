@@ -1,11 +1,13 @@
 package fr.wildcodeschool.robinsdesmers.controller;
 
+import fr.wildcodeschool.robinsdesmers.model.Authentication;
 import fr.wildcodeschool.robinsdesmers.model.User;
 import fr.wildcodeschool.robinsdesmers.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class UserController {
@@ -25,7 +27,28 @@ public class UserController {
 
     @PostMapping("/users")
     public User createUser(@RequestBody User user) {
+        user.setToken(generateToken());
         return userRepository.save(user);
+    }
+
+    public String generateToken() {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 20;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        return buffer.toString();
+    }
+
+    @GetMapping("/users/token/{token}")
+    public User signByToken(@PathVariable String token) {
+        User user = userRepository.findUserByToken(token);
+        return user;
     }
 
     @DeleteMapping("/users/{userId}")
@@ -59,6 +82,21 @@ public class UserController {
         userToUpdate.setLongitude(user.getLongitude());
         userToUpdate.setConnected(user.isConnected());
         return userRepository.save(userToUpdate);
+    }
+
+    @GetMapping("/users/{email}/{password}")
+    public Authentication signIn(@PathVariable String email, @PathVariable String password) {
+        User user = userRepository.findUserByEmailIgnoreCase(email);
+        Authentication authentication = new Authentication();
+        if (user == null) {
+            authentication.setError("ERROR_EMAIL");
+            return authentication;
+        } else if (!user.getPassword().equals(password)) {
+            authentication.setError("ERROR_PASSWORD");
+            return authentication;
+        }
+        authentication.setUser(user);
+        return authentication;
     }
 }
 
