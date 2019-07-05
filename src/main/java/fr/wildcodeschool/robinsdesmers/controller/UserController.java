@@ -1,7 +1,10 @@
 package fr.wildcodeschool.robinsdesmers.controller;
 
 import fr.wildcodeschool.robinsdesmers.model.Authentication;
+import fr.wildcodeschool.robinsdesmers.model.Stats;
 import fr.wildcodeschool.robinsdesmers.model.User;
+import fr.wildcodeschool.robinsdesmers.repository.CollectPointRepository;
+import fr.wildcodeschool.robinsdesmers.repository.RubbishRepository;
 import fr.wildcodeschool.robinsdesmers.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,11 @@ import java.util.Random;
 
 @RestController
 public class UserController {
+    @Autowired
+    private CollectPointRepository collectPointRepository;
+
+    @Autowired
+    private RubbishRepository rubbishRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -97,6 +105,15 @@ public class UserController {
         }
         authentication.setUser(user);
         return authentication;
+    }
+
+    @GetMapping("/stats")
+    public Stats getStats(){
+        Stats stats = new Stats();
+        stats.setNbUsers(userRepository.findAll().size());
+        stats.setNbCollectPoints(collectPointRepository.findAll().size());
+        stats.setNbRubbishes(rubbishRepository.findAll().size());
+        return stats;
     }
 }
 
