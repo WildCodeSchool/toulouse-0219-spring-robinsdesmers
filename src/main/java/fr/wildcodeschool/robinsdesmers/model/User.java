@@ -1,6 +1,8 @@
 package fr.wildcodeschool.robinsdesmers.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -25,7 +27,10 @@ public class User extends DateItem {
     private Double latitude;
     private Double longitude;
     private boolean connected;
-
+    @NotNull
+    @NotEmpty
+    @Column(unique = true)
+    private String token;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<RubbishItem> rubbishItems;
@@ -198,5 +203,13 @@ public class User extends DateItem {
 
     public void setCollectPointItems(List<CollectPointItem> collectPointItems) {
         this.collectPointItems = collectPointItems;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
