@@ -108,5 +108,15 @@ public class UserController {
         stats.setNbRubbishes(rubbishRepository.findAll().size());
         return stats;
     }
+
+    @GetMapping("/users/email/{email}")
+    public boolean checkEmail(@PathVariable String email){
+        User user = userRepository.findUserByEmailIgnoreCase(email);
+        if(user != null){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
