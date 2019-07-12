@@ -64,13 +64,6 @@ public class UserController {
         userRepository.deleteById(userId);
     }
 
-    @PutMapping("/users/{userId}/score")
-    public User updateUserScore(@PathVariable Long userId) {
-        User userToUpdate = userRepository.findById(userId).get();
-        userToUpdate.setScore(userToUpdate.getScore() + 10);
-        return userRepository.save(userToUpdate);
-    }
-
     @PutMapping("/users/{userId}")
     public User updateUser(@PathVariable Long userId, @RequestBody User user) {
         User userToUpdate = userRepository.findById(userId).get();
@@ -108,12 +101,22 @@ public class UserController {
     }
 
     @GetMapping("/stats")
-    public Stats getStats(){
+    public Stats getStats() {
         Stats stats = new Stats();
         stats.setNbUsers(userRepository.findAll().size());
         stats.setNbCollectPoints(collectPointRepository.findAll().size());
         stats.setNbRubbishes(rubbishRepository.findAll().size());
         return stats;
+    }
+
+    @GetMapping("/users/email/{email}")
+    public boolean checkEmail(@PathVariable String email) {
+        User user = userRepository.findUserByEmailIgnoreCase(email);
+        if (user != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
