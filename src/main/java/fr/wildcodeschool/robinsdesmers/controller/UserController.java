@@ -110,7 +110,7 @@ public class UserController {
     }
 
     @GetMapping("/users/email/{email}")
-    public boolean checkEmail(@PathVariable String email){
+    public boolean checkEmail(@PathVariable String email) {
         User user = userRepository.findUserByEmailIgnoreCase(email);
         if (user != null) {
             return true;
